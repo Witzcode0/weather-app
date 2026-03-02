@@ -1,0 +1,115 @@
+{% extends "layout.html" %}
+{% block title %}
+Home
+{% endblock %}
+
+{% block body %}
+
+<section class="flex justify-center items-center py-20 px-4">
+
+    <div class="w-full max-w-5xl bg-white shadow-2xl rounded-3xl p-10">
+
+        <!-- Location Section -->
+        <div class="text-center mb-10">
+            <h2 class="text-4xl font-bold text-gray-800">
+                New York
+            </h2>
+            <p class="text-gray-500">
+                New York, United States of America
+            </p>
+            <p class="text-sm text-gray-400 mt-1">
+                Local Time: 2026-03-02 04:55 (America/New_York)
+            </p>
+        </div>
+
+        <!-- Main Weather -->
+        <div class="flex flex-col md:flex-row items-center justify-center gap-10 mb-12">
+
+            <img src="https://cdn.weatherapi.com/weather/64x64/night/113.png"
+                 alt="Clear"
+                 class="w-28 h-28">
+
+            <div class="text-center md:text-left">
+                <p class="text-7xl font-bold text-indigo-600">
+                    -4.8°C
+                </p>
+                <p class="text-xl text-gray-600 mt-2">
+                    Clear
+                </p>
+                <p class="text-gray-500">
+                    Feels Like: -10.2°C
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Weather Details Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 text-sm">
+
+            <div class="bg-indigo-50 p-4 rounded-2xl text-center shadow">
+                <p class="font-semibold">Humidity</p>
+                <p class="text-indigo-600 font-bold mt-1">38%</p>
+            </div>
+
+            <div class="bg-indigo-50 p-4 rounded-2xl text-center shadow">
+                <p class="font-semibold">Wind Speed</p>
+                <p class="text-indigo-600 font-bold mt-1">14.4 kph</p>
+            </div>
+
+            <div class="bg-indigo-50 p-4 rounded-2xl text-center shadow">
+                <p class="font-semibold">Wind Direction</p>
+                <p class="text-indigo-600 font-bold mt-1">N (356°)</p>
+            </div>
+
+            <div class="bg-indigo-50 p-4 rounded-2xl text-center shadow">
+                <p class="font-semibold">Wind Gust</p>
+                <p class="text-indigo-600 font-bold mt-1">18.1 kph</p>
+            </div>
+
+            <div class="bg-indigo-50 p-4 rounded-2xl text-center shadow">
+                <p class="font-semibold">Pressure</p>
+                <p class="text-indigo-600 font-bold mt-1">1036 mb</p>
+            </div>
+
+            <div class="bg-indigo-50 p-4 rounded-2xl text-center shadow">
+                <p class="font-semibold">Visibility</p>
+                <p class="text-indigo-600 font-bold mt-1">16 km</p>
+            </div>
+
+            <div class="bg-indigo-50 p-4 rounded-2xl text-center shadow">
+                <p class="font-semibold">Cloud Cover</p>
+                <p class="text-indigo-600 font-bold mt-1">0%</p>
+            </div>
+
+            <div class="bg-indigo-50 p-4 rounded-2xl text-center shadow">
+                <p class="font-semibold">UV Index</p>
+                <p class="text-indigo-600 font-bold mt-1">0</p>
+            </div>
+
+            <div class="bg-indigo-50 p-4 rounded-2xl text-center shadow">
+                <p class="font-semibold">Dew Point</p>
+                <p class="text-indigo-600 font-bold mt-1">-10.7°C</p>
+            </div>
+
+            <div class="bg-indigo-50 p-4 rounded-2xl text-center shadow">
+                <p class="font-semibold">Wind Chill</p>
+                <p class="text-indigo-600 font-bold mt-1">-6.3°C</p>
+            </div>
+
+            <div class="bg-indigo-50 p-4 rounded-2xl text-center shadow">
+                <p class="font-semibold">Heat Index</p>
+                <p class="text-indigo-600 font-bold mt-1">-2.1°C</p>
+            </div>
+
+            <div class="bg-indigo-50 p-4 rounded-2xl text-center shadow">
+                <p class="font-semibold">Precipitation</p>
+                <p class="text-indigo-600 font-bold mt-1">0.0 mm</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
