@@ -9,35 +9,52 @@ Home
 
     <div class="w-full max-w-5xl bg-white shadow-2xl rounded-3xl p-10">
 
+        <!-- Search City -->
+        <div class="mb-8">
+            <form method="post" action="{% url 'home' %}" class="flex items-center gap-3">
+                {% csrf_token %}
+                
+                <input 
+                    type="text" 
+                    name="city" 
+                    placeholder="Search city (e.g. London, Tokyo, Ahmedabad)"
+                    class="flex-1 px-5 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    required
+                >
+
+                <button 
+                    type="submit"
+                    class="px-6 py-3 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition"
+                >
+                    Search
+                </button>
+
+            </form>
+        </div>
+
         <!-- Location Section -->
         <div class="text-center mb-10">
             <h2 class="text-4xl font-bold text-gray-800">
-                New York
+                {{data.location.name}}
             </h2>
             <p class="text-gray-500">
-                New York, United States of America
+                {{data.location.name}}, {{data.location.region}}, {{data.location.country}}
             </p>
             <p class="text-sm text-gray-400 mt-1">
-                Local Time: 2026-03-02 04:55 (America/New_York)
+                Local Time: <span id="time"></span> ({{data.location.tz_id}})
             </p>
         </div>
 
         <!-- Main Weather -->
         <div class="flex flex-col md:flex-row items-center justify-center gap-10 mb-12">
 
-            <img src="https://cdn.weatherapi.com/weather/64x64/night/113.png"
+            <img src="{{data.current.condition.icon}}"
                  alt="Clear"
                  class="w-28 h-28">
 
             <div class="text-center md:text-left">
                 <p class="text-7xl font-bold text-indigo-600">
-                    -4.8°C
-                </p>
-                <p class="text-xl text-gray-600 mt-2">
-                    Clear
-                </p>
-                <p class="text-gray-500">
-                    Feels Like: -10.2°C
+                    {{data.current.temp_c}}°C    
                 </p>
             </div>
 
@@ -111,5 +128,37 @@ Home
     </div>
 
 </section>
+
+<script>
+function showTime(tz) {
+    function updateTime() {
+        const now = new Date();
+
+        const formatter = new Intl.DateTimeFormat('en-US', {
+            timeZone: tz,
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: true
+        });
+
+        const parts = formatter.formatToParts(now);
+        const get = type => parts.find(p => p.type === type).value;
+
+        const formatted =
+            `${get('year')}-${get('month')}-${get('day')} ${get('hour')}:${get('minute')}:${get('second')} ${get('dayPeriod')}`;
+
+        document.getElementById("time").innerText = formatted;
+    }
+
+    updateTime();
+    setInterval(updateTime, 1000); // update every second
+}
+
+showTime("{{ data.location.tz_id|escapejs }}");
+</script>
 
 {% endblock %}
